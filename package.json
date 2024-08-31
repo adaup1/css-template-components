@@ -1,11 +1,27 @@
 {
-  "name": "css-selector-components",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "name": "css-template-components",
+  "private": false,
+  "description": "A simple package for CSS in JS styles",
+  "version": "1.0.1",
+  "main": "dist/index.umd.js",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.umd.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "/dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "tsc && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -14,7 +30,8 @@
     "@types/node": "^22.5.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "typescript": "^5.5.4"
+    "typescript": "^5.5.4",
+    "vite-plugin-dts": "^4.0.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
