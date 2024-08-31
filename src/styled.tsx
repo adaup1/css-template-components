@@ -1,6 +1,5 @@
 import React from "react";
 
-// Function to add styles to the stylesheet
 const addStylesheet = (styles: string) => {
   let styleSheet = document.querySelector(
     'style[data-title="css-selector-components-styles"]'
@@ -24,15 +23,14 @@ const addStylesheet = (styles: string) => {
   }
 };
 
-// Higher-order component to apply styles
 export const styled =
   (
     Component: React.ComponentType<any> | keyof JSX.IntrinsicElements,
-    css: (props: any) => string
+    css: string | ((props: any) => string)
   ) =>
   (props: any) => {
     const id = `_${crypto.randomUUID()}`;
-    const styles = css(props);
+    const styles = typeof css === "function" ? css(props) : css;
 
     // Inject styles immediately
     addStylesheet(`.${id} {${styles}}`);

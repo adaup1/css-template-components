@@ -1,13 +1,12 @@
 import React from "react";
 import { styled } from "./styled";
 
-// Component with props
 const Name = ({ name }: { name: string }) => {
   return <div>{name}</div>;
 };
 
 // Styled React component
-const StyledName = styled(
+const StyledComponent = styled(
   Name,
   ({ name }) => `
   background: ${name === "Andy" ? "green" : "blue"};
@@ -15,22 +14,21 @@ const StyledName = styled(
 `
 );
 
-// Styled HTML element
+// Styled HTML element with static styles
 const StyledDiv = styled(
   "div",
-  ({ name }) => `
-  background: ${name === "Andy" ? "yellow" : "orange"};
-  color: red;
+  `
+  color: purple;
 `
 );
 
 function App() {
   return (
     <>
-      <StyledName name="Frank" />
-      <StyledName name="Andy" />
-      <StyledDiv name="Frank">Frank</StyledDiv>
-      <StyledDiv name="Andy">Andy</StyledDiv>
+      <StyledComponent name="Frank" />
+      <StyledComponent name="Andy" />
+      <StyledDiv>Frank</StyledDiv>
+      <StyledDiv>Andy</StyledDiv>
     </>
   );
 }
