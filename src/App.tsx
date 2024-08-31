@@ -1,7 +1,8 @@
+import React from "react";
 import { styled } from "./styled";
 
 // Component with props
-const Name = ({ name }) => {
+const Name = ({ name }: { name: string }) => {
   return <div>{name}</div>;
 };
 
