@@ -5,6 +5,19 @@ const Name = ({ name }: { name: string }) => {
   return <div>{name}</div>;
 };
 
+const App = () => {
+  return (
+    <>
+      <StyledComponent name="Frank" />
+      <StyledComponent name="Andy" />
+      <StyledDiv>Frank</StyledDiv>
+      <StyledDiv>Andy</StyledDiv>
+    </>
+  );
+};
+
+export default App;
+
 // Styled React component
 const StyledComponent = styled(
   Name,
@@ -21,16 +34,3 @@ const StyledDiv = styled(
   color: purple;
 `
 );
-
-function App() {
-  return (
-    <>
-      <StyledComponent name="Frank" />
-      <StyledComponent name="Andy" />
-      <StyledDiv>Frank</StyledDiv>
-      <StyledDiv>Andy</StyledDiv>
-    </>
-  );
-}
-
-export default App;
