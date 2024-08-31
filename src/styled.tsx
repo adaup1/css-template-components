@@ -1,4 +1,4 @@
-import React from "react";
+import { createElement } from "react";
 
 const addStylesheet = (styles: string) => {
   let styleSheet = document.querySelector(
@@ -36,7 +36,7 @@ export const styled =
     addStylesheet(`.${id} {${styles}}`);
 
     // Create the element dynamically
-    return React.createElement(
+    return createElement(
       typeof Component === "string" ? Component : "div",
       { className: id, ...props },
       typeof Component === "string" ? props.children : <Component {...props} />
