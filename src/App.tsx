@@ -1,4 +1,4 @@
-import { styled } from "./styled";
+import { styled } from "./client/styled";
 
 const Name = ({ name }: { name: string }) => {
   return <div>{name}</div>;

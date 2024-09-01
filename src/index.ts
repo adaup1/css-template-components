@@ -1,3 +1,3 @@
-import { styled } from "./styled";
+import { styled } from "./styledLegacy";
 
 export { styled };
