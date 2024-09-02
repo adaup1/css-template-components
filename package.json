@@ -1,16 +1,24 @@
 {
   "name": "css-template-components",
   "private": false,
-  "description": "A simple package for CSS in JS styles",
+  "description": "A simple library for CSS in JS styles for server and client-side React components",
   "version": "1.0.3",
   "main": "dist/index.umd.js",
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
+  "type": "module",
   "exports": {
     ".": {
       "import": "./dist/index.es.js",
-      "require": "./dist/index.umd.js",
       "types": "./dist/index.d.ts"
+    },
+    "./client": {
+      "import": "./dist/client/index.es.js",
+      "types": "./dist/client/index.d.ts"
+    },
+    "./server": {
+      "import": "./dist/server/index.es.js",
+      "types": "./dist/server/index.d.ts"
     }
   },
   "files": [
