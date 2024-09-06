@@ -175,7 +175,7 @@ This is the most complex example. We'll be creating a ChildComponent and ParentC
 
 ```
 "use client"
-import { styled } from "css-template-components/styled";
+import { styled } from "css-template-components/client";
 
 // Child component that will be styled in the parent
 const ChildComponent = ({ name, age }: { name: string; age: number }) => {
