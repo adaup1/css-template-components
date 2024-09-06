@@ -91,9 +91,9 @@ _Tagged template strings should contain valid CSS_
 
 ### Code Examples
 
-##### Example 1
+#### Example 1
 
-Create a <p> element with static styles inside a client component:
+Create a p element with static styles inside a client component:
 
 ```
 "use client";
@@ -117,9 +117,9 @@ const StyledParagraph = styled(
 
 ```
 
-##### Example 2
+#### Example 2
 
-Create a <div> element with dynamic styles inside a server component:
+Create a div element with dynamic styles inside a server component:
 
 ```
 import { styled } from "css-template-components/server";
@@ -141,7 +141,7 @@ const StyledDiv = styled(
 
 ```
 
-##### Example 3
+#### Example 3
 
 Style a child component inside the parent with static styles.
 
@@ -169,9 +169,9 @@ const StyledChildComponent = styled(
 );
 ```
 
-##### Example 4
+#### Example 4
 
-This is the most complex example. We'll be creating a ChildComponent and ParentComponent. The ChildComponent will include a styled <div> with static styles. The ParentComponent will include a styled version of the ChildComponent with dynamic styles. We'll even add a touch of Typescript.
+This is the most complex example. We'll be creating a ChildComponent and ParentComponent. The ChildComponent will include a styled div with static styles. The ParentComponent will include a styled version of the ChildComponent with dynamic styles. We'll even add a touch of Typescript.
 
 ```
 "use client"
