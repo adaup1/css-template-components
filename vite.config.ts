@@ -1,4 +1,4 @@
-import path from "path";
+import { resolve } from "path";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import dts from "vite-plugin-dts";
@@ -6,9 +6,14 @@ import dts from "vite-plugin-dts";
 export default defineConfig({
   build: {
     lib: {
-      entry: path.resolve(__dirname, "src/index.ts"),
-      name: "react-jp-ui",
-      fileName: (format) => `index.${format}.js`,
+      entry: {
+        index: resolve(__dirname, "src/index.ts"),
+        server: resolve(__dirname, "src/server.ts"),
+        client: resolve(__dirname, "src/client.ts"),
+      },
+      name: "css-template-components",
+      formats: ["es", "cjs"],
+      fileName: (format, entryName) => `${entryName}.${format}.js`,
     },
     rollupOptions: {
       external: ["react", "react-dom"],

@@ -2,15 +2,25 @@
   "name": "css-template-components",
   "private": false,
   "description": "A simple package for CSS in JS styles",
-  "version": "1.0.3",
-  "main": "dist/index.umd.js",
+  "version": "0.1.1",
+  "main": "dist/index.js",
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/index.es.js",
-      "require": "./dist/index.umd.js",
+      "require": "./dist/index.js",
       "types": "./dist/index.d.ts"
+    },
+    "./server": {
+      "import": "./dist/server.es.js",
+      "require": "./dist/server.js",
+      "types": "./dist/server.d.ts"
+    },
+    "./client": {
+      "import": "./dist/client.es.js",
+      "require": "./dist/client.js",
+      "types": "./dist/client.d.ts"
     }
   },
   "files": [
@@ -26,7 +36,6 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@types/jest": "^29.5.12",
     "@types/node": "^22.5.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -43,8 +52,7 @@
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
     "eslint-plugin-react-refresh": "^0.4.9",
     "globals": "^15.9.0",
-    "vite": "^5.4.1",
-    "vite-plugin-externals": "^0.6.2"
+    "vite": "^5.4.1"
   },
   "peerDependencies": {
     "react": "^18.0.0",
