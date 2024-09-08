@@ -57,5 +57,14 @@
   "peerDependencies": {
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
-  }
+  },
+  "homepage": "https://github.com/adaup1/css-template-components",
+  "keywords": [
+    "react",
+    "css",
+    "next.js",
+    "server styles",
+    "client",
+    "styles"
+  ]
 }
