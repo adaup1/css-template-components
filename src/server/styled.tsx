@@ -1,5 +1,6 @@
 import { createElement } from "react";
 import { addServerStyles } from "./helpers";
+import { createHashCode } from "../helpers";
 
 export const styled =
   (
@@ -7,18 +8,20 @@ export const styled =
     css: string | ((props: any) => string)
   ) =>
   (props: any) => {
-    const id = `_${crypto.randomUUID()}`;
-    const styles = `.${id} {${typeof css === "function" ? css(props) : css}}`;
+    const styles = `${typeof css === "function" ? css(props) : css}`;
+    const className = `_${createHashCode(styles)}`;
+    const styleClass = `.${className} {${styles}}`;
 
-    // Collect styles on the server
+    // Check if we are on the server (no window object)
     if (typeof window === "undefined") {
-      addServerStyles(styles);
+      // Collect and add styles to the server-side renderer
+      addServerStyles(styleClass);
     }
 
-    // Create the element dynamically
+    // Return the dynamically created component with the generated className
     return createElement(
       typeof Component === "string" ? Component : "div",
-      { className: id, ...props },
+      { className, ...props },
       typeof Component === "string" ? props.children : <Component {...props} />
     );
   };

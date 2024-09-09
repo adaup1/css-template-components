@@ -153,7 +153,7 @@ const ChildComponent = () => {
   return <>I'm the child!</>;
 };
 
-// The parent component that return the styled version of ChildComponent (see below for styles)
+// The parent component that returns the styled version of ChildComponent (see below for styles)
 export const ParentComponent = () => {
   return <StyledChildComponent />;
 };
@@ -203,10 +203,10 @@ const StyledFlexContainer = styled(
 
 // Some data
 const people = [
-  { name: "Marissa", age: 28 },
-  { name: "Dave", age: 34 },
-  { name: "Ronald", age: 54 },
-  { name: "Sarah", age: 47 },
+  { name: "Marissa", age: 28, id: 1 },
+  { name: "Dave", age: 34, id: 2 },
+  { name: "Ronald", age: 54, id: 3 },
+  { name: "Sarah", age: 47, id: 4 },
 ];
 
 // The parent component that will map over the data and return the styled version of ChildComponent (see below for styles)
@@ -214,7 +214,7 @@ export const ParentComponent = () => {
   return (
     <>
       {people.map((person) => (
-        <StyledChildComponent name={person.name} age={person.age} />
+        <StyledChildComponent name={person.name} age={person.age}  id={person.id} />
       ))}
     </>
   );
