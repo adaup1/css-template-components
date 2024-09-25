@@ -12,11 +12,13 @@ export const styled = (
     );
     const className = useMemo(
       () =>
-        `_${createHashCode({
-          styleString: styles,
-          component: `${Component}`,
-        })}`,
-      [styles]
+        props.className
+          ? props.className
+          : `_${createHashCode({
+              styleString: styles,
+              component: `${Component}`,
+            })}`,
+      [styles, props.className]
     );
     const styleRule = useMemo(
       () => `.${className} {${styles}}`,

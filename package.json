@@ -2,7 +2,7 @@
   "name": "css-template-components",
   "private": false,
   "description": "A simple package for CSS in JS styles",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",

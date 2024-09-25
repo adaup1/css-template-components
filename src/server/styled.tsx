@@ -9,10 +9,14 @@ export const styled =
   ) =>
   (props: any) => {
     const styles = `${typeof css === "function" ? css(props) : css}`;
-    const className = `_${createHashCode({
-      styleString: styles,
-      component: `${Component}`,
-    })}`;
+    // Auto generate className if className isn't provided
+    const className = props.className
+      ? props.className
+      : `_${createHashCode({
+          styleString: styles,
+          component: `${Component}`,
+        })}`;
+
     const styleClass = `.${className} {${styles}}`;
 
     // Check if we are on the server (no window object)

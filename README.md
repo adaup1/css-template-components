@@ -260,6 +260,33 @@ const StyledDiv = styled(
 );
 ```
 
+##### className override
+
+Passing a custom className prop won't break css-template-components. Just keep in mind it may result in extra css-generation if more than one element shares the same css properties.
+
+Example:
+
+```js
+"use client";
+import { styled } from "css-template-components/client";
+
+export const MyComponent = () => {
+  return (
+    <StyledParagraph className="customClassName">
+      I have a custom className!
+    </StyledParagraph>
+  );
+};
+
+const StyledParagraph = styled(
+  "p",
+  `
+  padding: 1rem;
+  color: purple;
+`
+);
+```
+
 ## Thank you for choosing css-template-components!
 
 ## ENJOY!
