@@ -1,9 +1,32 @@
-export const createHashCode = (str: string) => {
+const hashMap = new Map();
+
+export const createHashCode = ({
+  styleString,
+  component = "",
+}: {
+  styleString: string;
+  component: string;
+}) => {
   let hash = 0;
-  for (let i = 0; i < str.length; i++) {
-    const char = str.charCodeAt(i);
+  const combinedStr = styleString + component;
+
+  // Generate the initial hash based on the style string and identifier
+  for (let i = 0; i < combinedStr.length; i++) {
+    const char = combinedStr.charCodeAt(i);
     hash = (hash << 5) - hash + char;
-    hash |= 0; // Convert to 32bit integer
+    hash |= 0; // Ensure it's a 32-bit integer
   }
-  return hash.toString(36);
+
+  let originalHash = hash.toString(36);
+  let uniqueHash = originalHash;
+  let counter = 1;
+
+  // Check for hash collisions
+  while (hashMap.has(uniqueHash) && hashMap.get(uniqueHash) !== styleString) {
+    uniqueHash = `${originalHash}-${counter++}`;
+  }
+
+  hashMap.set(uniqueHash, styleString);
+
+  return uniqueHash;
 };

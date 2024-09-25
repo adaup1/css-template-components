@@ -10,7 +10,14 @@ export const styled = (
       () => (typeof css === "function" ? css(props) : css),
       [props, css]
     );
-    const className = useMemo(() => `_${createHashCode(styles)}`, [styles]);
+    const className = useMemo(
+      () =>
+        `_${createHashCode({
+          styleString: styles,
+          component: `${Component}`,
+        })}`,
+      [styles]
+    );
     const styleRule = useMemo(
       () => `.${className} {${styles}}`,
       [className, styles]

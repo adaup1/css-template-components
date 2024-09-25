@@ -21,13 +21,13 @@ Using css-template-components with server-side rendering requires just a \*tiny 
 
 **1.** Import the getServerStyles function from "css-template-components/server" into the root component of the project. In Next.js using App Router, this will the root layout.tsx.
 
-```
+```js
 import { getServerStyles } from "css-template-components/server";
 ```
 
 **2.** Inside the RootLayout Component, call getServerStyles and assign it to a variable
 
-```
+```js
 const serverStyles = getServerStyles();
 ```
 
@@ -35,20 +35,20 @@ const serverStyles = getServerStyles();
 
 **Here is an example full implementation:**
 
-```
+```js
 import { getServerStyles } from "css-template-components/server ";
 
-export default function RootLayout({ children}) {
+export default function RootLayout({ children }) {
   const serverStyles = getServerStyles();
 
   return (
     <html>
       <head>
         <style>{serverStyles}</style>
-      <head>
+      </head>
       <body>{children}</body>
     </html>
-    );
+  );
 }
 ```
 
@@ -64,13 +64,13 @@ Styled-components is an incredible library, but it uses React.context under the 
 
 #### For server components
 
-```
+```js
 import { styled } from "css-template-components/server";
 ```
 
 #### For client components
 
-```
+```js
 import { styled } from "css-template-components/client";
 ```
 
@@ -95,16 +95,12 @@ _Tagged template strings should contain valid CSS_
 
 Create a p element with static styles inside a client component:
 
-```
+```js
 "use client";
 import { styled } from "css-template-components/client";
 
 export const MyComponent = () => {
-  return (
-      <StyledParagraph>
-        My styles are static!
-      <StyledParagraph>
-  );
+  return <StyledParagraph>My styles are static!</StyledParagraph>;
 };
 
 const StyledParagraph = styled(
@@ -114,38 +110,36 @@ const StyledParagraph = styled(
   color: purple;
 `
 );
-
 ```
 
 #### Example 2
 
 Create a div element with dynamic styles inside a server component:
 
-```
+```js
 import { styled } from "css-template-components/server";
 
 export const MyComponent = () => {
   return (
-      <StyledDiv name='Frank'>
-        My styles are dynamic based on my properties!
-      </StyledParagraph>
+    <StyledDiv name="Frank">
+      My styles are dynamic based on my properties!
+    </StyledDiv>
   );
 };
 
 const StyledDiv = styled(
   "div",
-  ({ name })=>  `
-  background-color: ${name === "Frank" ? '#ff0000' : '#00ffff'};
+  ({ name }) => `
+  background-color: ${name === "Frank" ? "#ff0000" : "#00ffff"};
 `
 );
-
 ```
 
 #### Example 3
 
 Style a child component inside the parent with static styles.
 
-```
+```js
 import { styled } from "css-template-components/server";
 
 // Child component that will be styled in the parent
@@ -173,12 +167,12 @@ const StyledChildComponent = styled(
 
 This is the most complex example. We'll be creating a ChildComponent and ParentComponent. The ChildComponent will include a styled div with static styles. The ParentComponent will include a styled version of the ChildComponent with dynamic styles. We'll even add a touch of Typescript.
 
-```
-"use client"
+```js
+"use client";
 import { styled } from "css-template-components/client";
 
 // Child component that will be styled in the parent
-const ChildComponent = ({ name, age }: { name: string; age: number }) => {
+const ChildComponent = ({ name, age }: { name: string, age: number }) => {
   return (
     <>
       <StyledFlexContainer>
@@ -214,7 +208,12 @@ export const ParentComponent = () => {
   return (
     <>
       {people.map((person) => (
-        <StyledChildComponent name={person.name} age={person.age}  id={person.id} />
+        <StyledChildComponent
+          name={person.name}
+          age={person.age}
+          id={person.id}
+          key={person.id}
+        />
       ))}
     </>
   );
@@ -223,7 +222,7 @@ export const ParentComponent = () => {
 // Styled ChildComponent with dynamic styles based on props for use inside ParentComponent
 const StyledChildComponent = styled(
   ChildComponent,
-  ({ name, age }: { name: string; age: number }) => `
+  ({ name, age }: { name: string, age: number }) => `
   background-color: ${name === "Ronald" ? "green" : "blue"};
 
   :hover {
@@ -243,7 +242,7 @@ const StyledChildComponent = styled(
 
 Example:
 
-```
+```js
 // Static styles with string for second argument
 const StyledDiv = styled(
   "div",
