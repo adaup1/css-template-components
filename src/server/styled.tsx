@@ -1,6 +1,6 @@
 import { createElement } from "react";
 import { addServerStyles } from "./helpers";
-import { createHashCode } from "../helpers";
+import { createHashCode, sanitizeStyles } from "../helpers";
 
 export const styled =
   (
@@ -8,13 +8,16 @@ export const styled =
     css: string | ((props: any) => string)
   ) =>
   (props: any) => {
-    const styles = `${typeof css === "function" ? css(props) : css}`;
+    const rawStyles = `${typeof css === "function" ? css(props) : css}`;
+    const styles = sanitizeStyles(rawStyles);
+
     // Auto generate className if className isn't provided
     const className = props.className
       ? props.className
       : `_${createHashCode({
           styleString: styles,
           component: `${Component}`,
+          key: props.key ? `${props.key}` : "",
         })}`;
 
     const styleClass = `.${className} {${styles}}`;

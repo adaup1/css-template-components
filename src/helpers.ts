@@ -3,12 +3,14 @@ const hashMap = new Map();
 export const createHashCode = ({
   styleString,
   component = "",
+  key = "",
 }: {
   styleString: string;
   component: string;
+  key: string;
 }) => {
   let hash = 0;
-  const combinedStr = styleString + component;
+  const combinedStr = styleString + component + key;
 
   // Generate the initial hash based on the style string and identifier
   for (let i = 0; i < combinedStr.length; i++) {
@@ -29,4 +31,9 @@ export const createHashCode = ({
   hashMap.set(uniqueHash, styleString);
 
   return uniqueHash;
+};
+
+export const sanitizeStyles = (styles: string): string => {
+  // Replace dangerous characters or content if needed
+  return styles.replace(/<\/?[^>]+(>|$)/g, "").trim();
 };

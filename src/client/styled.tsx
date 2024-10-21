@@ -1,15 +1,17 @@
 import React, { useEffect, forwardRef, createElement, useMemo } from "react";
-import { createHashCode } from "../helpers";
+import { createHashCode, sanitizeStyles } from "../helpers";
 
 export const styled = (
   Component: React.ComponentType<any> | keyof JSX.IntrinsicElements,
   css: string | ((props: any) => string)
 ) =>
   forwardRef((props: any, ref: React.Ref<any>) => {
-    const styles = useMemo(
+    const rawStyles = useMemo(
       () => (typeof css === "function" ? css(props) : css),
       [props, css]
     );
+    const styles = useMemo(() => sanitizeStyles(rawStyles), [rawStyles]);
+
     const className = useMemo(
       () =>
         props.className
@@ -17,8 +19,9 @@ export const styled = (
           : `_${createHashCode({
               styleString: styles,
               component: `${Component}`,
+              key: props.key ? `${props.key}` : "",
             })}`,
-      [styles, props.className]
+      [styles, props.className, props.key]
     );
     const styleRule = useMemo(
       () => `.${className} {${styles}}`,
